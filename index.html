@@ -15,7 +15,6 @@ body{
     height:100vh;
     margin:0;
     text-align:center;
-    overflow:hidden;
 }
 
 .card{
@@ -24,6 +23,7 @@ body{
     border-radius:20px;
     width:350px;
     box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    position: relative; /* 🔥 IMPORTANTE */
 }
 
 h1{
@@ -82,7 +82,7 @@ button{
     <p>¿Te quedarías conmigo mucho tiempo más?</p>
 
     <button class="si" onclick="aceptar()">Sí obvio 💘</button>
-    <button class="no" onmouseover="mover()">No 😔</button>
+    <button class="no" id="noBtn" onmouseover="mover()">No 😔</button>
 </div>
 
 <script>
@@ -92,110 +92,14 @@ function aceptar(){
 }
 
 function mover(){
-    const btn = document.querySelector(".no");
-    btn.style.top = Math.random()*80 + "%";
-    btn.style.left = Math.random()*80 + "%";
-}
-</script>
+    const btn = document.getElementById("noBtn");
+    const card = document.querySelector(".card");
 
-</body>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti 💖</title>
+    const maxX = card.clientWidth - btn.offsetWidth;
+    const maxY = card.clientHeight - btn.offsetHeight;
 
-<style>
-body{
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    font-family: Arial, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-    text-align:center;
-    overflow:hidden;
-}
-
-.card{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    width:350px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
-
-h1{
-    color:#ff4d6d;
-}
-
-.message{
-    font-size:18px;
-    margin:15px 0;
-    color:#444;
-}
-
-.heart{
-    font-size:40px;
-    animation: latido 1s infinite alternate;
-}
-
-@keyframes latido{
-    to{ transform:scale(1.2); }
-}
-
-button{
-    padding:12px 20px;
-    margin:10px;
-    border:none;
-    border-radius:30px;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.si{
-    background:#ff4d6d;
-    color:white;
-}
-
-.no{
-    background:#aaa;
-    color:white;
-    position:absolute;
-}
-</style>
-</head>
-
-<body>
-
-<div class="card">
-    <h1>Oye tú... 💕</h1>
-
-    <div class="message">
-        Gracias por quedarte conmigo incluso cuando soy intensa, sensible y un poquito dramática 😭  
-        Te amo mucho y quiero seguir creando momentos contigo, en la vida y en valo 💖
-    </div>
-
-    <div class="heart">💖</div>
-
-    <p>¿Te quedarías conmigo mucho tiempo más?</p>
-
-    <button class="si" onclick="aceptar()">Sí obvio 💘</button>
-    <button class="no" onmouseover="mover()">No 😔</button>
-</div>
-
-<script>
-function aceptar(){
-    alert("Sabía que dirías que sí 😌💖 Te amo demasiado.");
-    document.body.style.background = "#ff4d6d";
-}
-
-function mover(){
-    const btn = document.querySelector(".no");
-    btn.style.top = Math.random()*80 + "%";
-    btn.style.left = Math.random()*80 + "%";
+    btn.style.left = Math.random() * maxX + "px";
+    btn.style.top = Math.random() * maxY + "px";
 }
 </script>
 
